@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Search")
 public class Search extends HttpServlet {
    private static final long serialVersionUID = 1L;
+   private Race yourRace = new Race();
+   private Classes yourClass = new Classes();
+   private Backgrounds yourBackground = new Backgrounds();
 
    public Search() {
       super();
@@ -38,43 +41,179 @@ public class Search extends HttpServlet {
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
+      
       try {
          T1ServletCoveney.getDBConnectionCoveney();
          connection = T1ServletCoveney.connection;
 
+         // Empty search returns all items.
          if (keyword.isEmpty()) {
             String selectSQL = "SELECT * FROM TechDB";
             preparedStatement = connection.prepareStatement(selectSQL);
-         } else {
-            String selectSQL = "SELECT * FROM TechTable WHERE NAME LIKE ?";
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, keyword +"%");
+         } 
+         
+         
+         
+         // Search by race returns all characters of that race.
+         else if(keyword.equalsIgnoreCase("dwarf")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
          }
+         else if(keyword.equalsIgnoreCase("elf")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         else if(keyword.equalsIgnoreCase("halfling")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         else if(keyword.equalsIgnoreCase("human")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         
+         
+         
+         // Search by class returns all characters of that class.
+         else if(keyword.equalsIgnoreCase("bard")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         else if(keyword.equalsIgnoreCase("cleric")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         else if(keyword.equalsIgnoreCase("fighter")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         else if(keyword.equalsIgnoreCase("rogue")) {
+             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+         }
+         
+         
+         
+         // This one returns a search by name.
+         else {
+             String selectSQL = "SELECT * FROM TechTable WHERE NAME LIKE ?";
+             preparedStatement = connection.prepareStatement(selectSQL);
+             preparedStatement.setString(1, keyword +"%");
+          }
+         
          ResultSet rs = preparedStatement.executeQuery();
 
+         /**
+          * Needs to print out:
+          * Name
+          * Race
+          * Class
+          * Background
+          * Stat line
+          * ^ These are all from the MySQL server^
+          * 
+          * I have the rest of this set up to print from the race class
+          * and the classes class, so it provides more info into your
+          * stuff when you search for it.
+          * 
+          * Your ability score mod
+          * Size
+          * Speed
+          * Whether or not you have darkvision
+          * Your race's special trait
+          */
          while (rs.next()) {
             String name = rs.getString("name").trim();
             String race = rs.getString("race").trim();
             String characterClass = rs.getString("characterClass").trim();
             String background = rs.getString("background").trim();
 
+            // Set a race to print the info out for.
+            if (race.equalsIgnoreCase("dwarf")) {
+            	yourRace.Dwarf();
+            }
+            if (race.equalsIgnoreCase("elf")) {
+            	yourRace.Elf();
+            }
+            if (race.equalsIgnoreCase("halfling")) {
+            	yourRace.Halfling();
+            }
+            if (race.equalsIgnoreCase("human")) {
+            	yourRace.Human();
+            }
+            
+            
+            // Set a class to print the info out for.
+            if (characterClass.equalsIgnoreCase("bard")) {
+            	yourClass.Bard();
+            }
+            if (characterClass.equalsIgnoreCase("cleric")) {
+            	yourClass.Cleric();
+            }
+            if (characterClass.equalsIgnoreCase("fighter")) {
+            	yourClass.Fighter();
+            }
+            if (characterClass.equalsIgnoreCase("rogue")) {
+            	yourClass.Rogue();
+            }
+            
+            
+            // Set a background to print the info out for.
+            if (background.equalsIgnoreCase("charlatan")) {
+            	yourBackground.Charlatan();
+            }
+            if (background.equalsIgnoreCase("entertainer")) {
+            	yourBackground.Entertainer();
+            }
+            if (background.equalsIgnoreCase("hermit")) {
+            	yourBackground.Hermit();
+            }
+            if (background.equalsIgnoreCase("soldier")) {
+            	yourBackground.Soldier();
+            }
+            
+            
+            /**
+             * This is where the printing happens. I have it set I think
+             * to print out the full details for the character's race, class, and background.
+             * 
+             * We still need to set up the stat line stuff, but that's for later :D
+             */
             if (keyword.isEmpty() || name.contains(keyword)) {
                out.println("Name: " + name + ", ");
                out.println("Race: " + race + ", ");
                out.println("Class: " + characterClass + ",");
-               out.println("Background: " + background + "<br>");
+               out.println("Background: " + background);
+               out.println(yourRace.toString());
+               out.println(yourClass.toString());
+               out.println(yourBackground.toString() + "<br>");
             }
          }
+         
          out.println("<a href=/T1Coveney/search.html>Search Data</a> <br>");
          out.println("</body></html>");
          rs.close();
          preparedStatement.close();
          connection.close();
-      } catch (SQLException se) {
+      } 
+      
+      catch (SQLException se) {
          se.printStackTrace();
-      } catch (Exception e) {
+      } 
+      
+      catch (Exception e) {
          e.printStackTrace();
-      } finally {
+      } 
+      
+      finally {
          try {
             if (preparedStatement != null)
                preparedStatement.close();
