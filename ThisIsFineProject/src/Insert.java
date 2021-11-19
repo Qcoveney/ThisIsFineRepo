@@ -34,7 +34,7 @@ public class Insert extends HttpServlet {
       String background = request.getParameter("background");
 
       Connection connection = null;
-      String insertSql = " INSERT INTO TechDB (id, NAME, RACE, CLASS, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, EQUIPMENT, BACKGROUND) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      String insertSql = " INSERT INTO Characters (id, NAME, RACE, CLASS, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, EQUIPMENT, BACKGROUND) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try {
          T1ServletCoveney.getDBConnectionCoveney();
@@ -76,17 +76,17 @@ public class Insert extends HttpServlet {
 
 			"  <li><b>Stat Line</b>\n" + //
 			"  <li><b>Strength</b>: " + strength + "\n" + //
-			"  <li><b>Strength</b>: " + dexterity + "\n" + //
-			"  <li><b>Strength</b>: " + constitution + "\n" + //
-			"  <li><b>Strength</b>: " + intelligence + "\n" + //
-			"  <li><b>Strength</b>: " + wisdom + "\n" + //
-			"  <li><b>Strength</b>: " + charisma + "\n" + //
-			"  <li><b>Strength</b>: " + equipment + "\n" + //
-			"  <li><b>Strength</b>: " + background + "\n" + //
+			"  <li><b>Dexterity</b>: " + dexterity + "\n" + //
+			"  <li><b>Constitution</b>: " + constitution + "\n" + //
+			"  <li><b>Intelligence</b>: " + intelligence + "\n" + //
+			"  <li><b>Wisdom</b>: " + wisdom + "\n" + //
+			"  <li><b>Charisma</b>: " + charisma + "\n" + //
+			"  <li><b>Equipment</b>: " + equipment + "\n" + //
+			"  <li><b>Background</b>: " + background + "\n" + //
 
             "</ul>\n");
 
-      out.println("<a href=/T1Coveney/search.html>Search Data</a> <br>");
+      out.println("<a href=/ThisIsFineProject/search.html>Search Data</a> <br>");
       out.println("</body></html>");
    }
 

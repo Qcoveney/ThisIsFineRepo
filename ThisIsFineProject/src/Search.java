@@ -48,30 +48,29 @@ public class Search extends HttpServlet {
 
          // Empty search returns all items.
          if (keyword.isEmpty()) {
-            String selectSQL = "SELECT * FROM TechDB";
+            String selectSQL = "SELECT * FROM Characters";
             preparedStatement = connection.prepareStatement(selectSQL);
          } 
          
-         
-         
          // Search by race returns all characters of that race.
          else if(keyword.equalsIgnoreCase("dwarf")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE RACE LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
          else if(keyword.equalsIgnoreCase("elf")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE RACE LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
          else if(keyword.equalsIgnoreCase("halfling")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE RACE LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
          else if(keyword.equalsIgnoreCase("human")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE RACE LIKE ?";
+        	 out.println("human here");
+             String selectSQL = "SELECT * FROM Characters WHERE RACE LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
@@ -80,31 +79,29 @@ public class Search extends HttpServlet {
          
          // Search by class returns all characters of that class.
          else if(keyword.equalsIgnoreCase("bard")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE CLASS LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
          else if(keyword.equalsIgnoreCase("cleric")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE CLASS LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
          else if(keyword.equalsIgnoreCase("fighter")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE CLASS LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
          else if(keyword.equalsIgnoreCase("rogue")) {
-             String selectSQL = "SELECT * FROM TechTable WHERE CLASS LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE CLASS LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
          }
-         
-         
-         
+           
          // This one returns a search by name.
          else {
-             String selectSQL = "SELECT * FROM TechTable WHERE NAME LIKE ?";
+             String selectSQL = "SELECT * FROM Characters WHERE NAME LIKE ?";
              preparedStatement = connection.prepareStatement(selectSQL);
              preparedStatement.setString(1, keyword +"%");
           }
@@ -133,7 +130,7 @@ public class Search extends HttpServlet {
          while (rs.next()) {
             String name = rs.getString("name").trim();
             String race = rs.getString("race").trim();
-            String characterClass = rs.getString("characterClass").trim();
+            String characterClass = rs.getString("class").trim();
             String background = rs.getString("background").trim();
 
             // Set a race to print the info out for.
@@ -187,18 +184,18 @@ public class Search extends HttpServlet {
              * 
              * We still need to set up the stat line stuff, but that's for later :D
              */
-            if (keyword.isEmpty() || name.contains(keyword)) {
-               out.println("Name: " + name + ", ");
-               out.println("Race: " + race + ", ");
-               out.println("Class: " + characterClass + ",");
-               out.println("Background: " + background);
-               out.println(yourRace.toString());
-               out.println(yourClass.toString());
+            if (keyword.isEmpty() || name.contains(keyword) || race.contains(keyword) || characterClass.contains(keyword)) {
+               out.println("Name: " + name + "<br> ");
+               out.println("Race: " + race + "<br> ");
+               out.println("Class: " + characterClass + "<br>");
+               out.println("Background: " + background + "<br>");
+               out.println(yourRace.toString() + "<br>");
+               out.println(yourClass.toString() + "<br>");
                out.println(yourBackground.toString() + "<br>");
             }
          }
          
-         out.println("<a href=/T1Coveney/search.html>Search Data</a> <br>");
+         out.println("<a href=/ThisIsFineProject/search.html>Search Data</a> <br>");
          out.println("</body></html>");
          rs.close();
          preparedStatement.close();
