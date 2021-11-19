@@ -192,6 +192,7 @@ public class Search extends HttpServlet {
                out.println(yourRace.toString() + "<br>");
                out.println(yourClass.toString() + "<br>");
                out.println(yourBackground.toString() + "<br>");
+               out.println("<br>" + "<br>");
             }
          }
          
