@@ -24,10 +24,17 @@ public class Insert extends HttpServlet {
       String name = request.getParameter("name");
       String race = request.getParameter("race");
       String characterClass = request.getParameter("characterClass");
+      String strength = request.getParameter("strength");
+      String dexterity = request.getParameter("dexterity");
+      String constitution = request.getParameter("constitution");
+      String intelligence = request.getParameter("intelligence");
+      String wisdom = request.getParameter("wisdom");
+      String charisma = request.getParameter("charisma");
+      String equipment = request.getParameter("equipment");
       String background = request.getParameter("background");
 
       Connection connection = null;
-      String insertSql = " INSERT INTO TechDB (id, NAME, RACE, CLASS, BACKGROUND) values (default, ?, ?, ?, ?)";
+      String insertSql = " INSERT INTO TechDB (id, NAME, RACE, CLASS, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, EQUIPMENT, BACKGROUND) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try {
          T1ServletCoveney.getDBConnectionCoveney();
@@ -36,7 +43,14 @@ public class Insert extends HttpServlet {
          preparedStmt.setString(1, name);
          preparedStmt.setString(2, race);
          preparedStmt.setString(3, characterClass);
-         preparedStmt.setString(4, background);
+         preparedStmt.setString(4, strength);
+         preparedStmt.setString(5, dexterity);
+         preparedStmt.setString(6, constitution);
+         preparedStmt.setString(7, intelligence);
+         preparedStmt.setString(8, wisdom);
+         preparedStmt.setString(9, charisma);
+         preparedStmt.setString(10, equipment);
+         preparedStmt.setString(11, background);
          preparedStmt.execute();
          connection.close();
       } catch (Exception e) {
@@ -59,6 +73,16 @@ public class Insert extends HttpServlet {
             "  <li><b>Character's Race</b>: " + race + "\n" + //
             "  <li><b>Character's Class</b>: " + characterClass + "\n" + //
             "  <li><b>Character's Background</b>: " + background + "\n" + //
+
+			"  <li><b>Stat Line</b>\n" + //
+			"  <li><b>Strength</b>: " + strength + "\n" + //
+			"  <li><b>Strength</b>: " + dexterity + "\n" + //
+			"  <li><b>Strength</b>: " + constitution + "\n" + //
+			"  <li><b>Strength</b>: " + intelligence + "\n" + //
+			"  <li><b>Strength</b>: " + wisdom + "\n" + //
+			"  <li><b>Strength</b>: " + charisma + "\n" + //
+			"  <li><b>Strength</b>: " + equipment + "\n" + //
+			"  <li><b>Strength</b>: " + background + "\n" + //
 
             "</ul>\n");
 
