@@ -14,9 +14,9 @@ public class Classes {
 		name = "0";
 		hitDice = "0";
 		hitPoints = "0";
-		proficiencies = "0";
-		equipment = "0";
-		featsAndSpells = "0";
+		proficiencies = "0\n";
+		equipment = "0\n";
+		featsAndSpells = "0\n";
 	}
 	
 	/**
