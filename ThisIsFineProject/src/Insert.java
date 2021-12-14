@@ -32,13 +32,12 @@ public class Insert extends HttpServlet {
       String charisma = request.getParameter("charisma");
       String equipment = request.getParameter("equipment");
       String background = request.getParameter("background");
-      rng random = new rng();
 
       Connection connection = null;
-      String insertSql = " INSERT INTO TechDB (id, NAME, RACE, CLASS, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, EQUIPMENT, BACKGROUND) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      String insertSql = " INSERT INTO Characters (id, NAME, RACE, CLASS, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, EQUIPMENT, BACKGROUND) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try {
-         Servlet.getDBConnectionCoveney();
+         Servlet.getDBConnection();
          connection = Servlet.connection;
          PreparedStatement preparedStmt = connection.prepareStatement(insertSql);
          preparedStmt.setString(1, name);
@@ -61,12 +60,7 @@ public class Insert extends HttpServlet {
       // Set response content type
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
-      
-      String randomHeader = "Here are your dice results! If you don't like them, refresh the page.";
-      random.roll();
-      String diceResults = random.toString();
-      
-      String title = "Here is where you create your character!";
+      String title = "Insert Data to DB table";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + "transitional//en\">\n";
       out.println(docType + //
             "<html>\n" + //
@@ -82,17 +76,17 @@ public class Insert extends HttpServlet {
 
 			"  <li><b>Stat Line</b>\n" + //
 			"  <li><b>Strength</b>: " + strength + "\n" + //
-			"  <li><b>Strength</b>: " + dexterity + "\n" + //
-			"  <li><b>Strength</b>: " + constitution + "\n" + //
-			"  <li><b>Strength</b>: " + intelligence + "\n" + //
-			"  <li><b>Strength</b>: " + wisdom + "\n" + //
-			"  <li><b>Strength</b>: " + charisma + "\n" + //
-			"  <li><b>Strength</b>: " + equipment + "\n" + //
-			"  <li><b>Strength</b>: " + background + "\n" + //
+			"  <li><b>Dexterity</b>: " + dexterity + "\n" + //
+			"  <li><b>Constitution</b>: " + constitution + "\n" + //
+			"  <li><b>Intelligence</b>: " + intelligence + "\n" + //
+			"  <li><b>Wisdom</b>: " + wisdom + "\n" + //
+			"  <li><b>Charisma</b>: " + charisma + "\n" + //
+			"  <li><b>Equipment</b>: " + equipment + "\n" + //
+			"  <li><b>Background</b>: " + background + "\n" + //
 
             "</ul>\n");
 
-      out.println("<a href=/T1Coveney/search.html>Search Data</a> <br>");
+      out.println("<a href=/ThisIsFineProject/search.html>Search Data</a> <br>");
       out.println("</body></html>");
    }
 

@@ -11,7 +11,7 @@ public class Backgrounds {
 	 * Default constructor
 	 */
 	public Backgrounds() {
-		background = "No background!\n";
+		background = "No background!";
 	}
 	
 	/**
@@ -21,7 +21,7 @@ public class Backgrounds {
 		background = "Charlatan - You know people on the inside and out. You know what makes\n"
 				+ "them tick, and use this to your advantage.\n"
 				+ "\n"
-				+ "Proficiencies: Deception, Sleight of Hand\n";
+				+ "Proficiencies: Deception, Sleight of Hand";
 	}
 	
 	/**
@@ -31,7 +31,7 @@ public class Backgrounds {
 		background = "Entertainer - You thrive in front of an audience. You know how to\n"
 				+ "entrance them, entertain them, and even inspire them.\n"
 				+ "\n"
-				+ "Proficiencies: Acrobatics, Performance\n";
+				+ "Proficiencies: Acrobatics, Performance";
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Backgrounds {
 		background = "Hermit - You lived in seclusion. Either in a sheltered community\n"
 				+ "such as a monastery, or entirely alone.\n"
 				+ "\n"
-				+ "Proficiencies: Medicine, Religion\n";
+				+ "Proficiencies: Medicine, Religion";
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Backgrounds {
 		background = "Soldier - War has been your life for as long as you care to remember.\n"
 				+ "You have been training your whole life for this moment.\n"
 				+ "\n"
-				+ "Proficiencies: Athletics, Intimidation\n";
+				+ "Proficiencies: Athletics, Intimidation";
 	}
 	
 	/**

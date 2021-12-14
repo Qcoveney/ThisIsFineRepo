@@ -32,33 +32,30 @@ footer {
 
 <body>
 <header>
-<h1> Create Your Character! </h1>
+<h1> Insert Characters! </h1>
 </header>
 
 <nav>
-<a href="/ThisIsFineProject/search.html">Character Archives</a> <br>
+<a href="/ThisIsFineProject/search.html">Search Data</a> <br>
 </nav>
 
 <section>
-	<h1>Here is where you fill in your character information.
-	We need to have a picture of an Elf, Dwarf, Halfling, and Human, as well as a Bard, Cleric, Fighter, and Rogue.
-	They can be combined into stuff like Human Fighter or Elf Cleric if that makes it easier.
-	We also need the rng class to print out the numbers within it here so the player can see them.</h1>
+	<h1>User Input</h1>
 	
 	<form action="Insert" method="POST">
-		Dice Results: <br />
-		Name: <input type="text" name="Name"> <br />
-		Race: <input type="text" name="Race"> <br />
-		Class: <input type="text" name="Class"> <br />
+	
+		Name: <input type="text" name="name"> <br />
+		Race: <input type="text" name="race"> <br />
+		Class: <input type="text" name="characterClass"> <br /><br />
 		Stat Line: <br />
-		Strength: <input type="text" name="Strength"> <br />
-		Dexterity: <input type="text" name="Dexterity"> <br />
-		Constitution: <input type="text" name="Constitution"> <br />
-		Intelligence: <input type="text" name="Intelligence"> <br />
-		Wisdom: <input type="text" name="Wisdom"> <br />
-		Charisma: <input type="text" name="Charisma"> <br />
-		Equipment: <input type="text" name="Equipment"> <br />
-		Background: <input type="text" name="Background"> <br />
+		Strength: <input type="text" name="strength"> <br />
+		Dexterity: <input type="text" name="dexterity"> <br />
+		Constitution: <input type="text" name="constitution"> <br />
+		Intelligence: <input type="text" name="intelligence"> <br />
+		Wisdom: <input type="text" name="wisdom"> <br />
+		Charisma: <input type="text" name="charisma"> <br />
+		Equipment: <input type="text" name="equipment"> <br />
+		Background: <input type="text" name="background"> <br />
 		
 		<input type="submit" value="Submit" />
 	</form>
@@ -66,6 +63,7 @@ footer {
 </section>
 
 <footer>
+Copyright
 </footer>
 </body>
 </html>

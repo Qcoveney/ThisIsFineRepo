@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 public class Servlet {
    static Connection connection = null;
 
-   static void getDBConnectionCoveney() {
+   static void getDBConnection() {
       System.out.println("-------- MySQL JDBC Connection Testing ------------");
       try {
          Class.forName("com.mysql.jdbc.Driver");
